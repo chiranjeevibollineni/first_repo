@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>item in cart</title>
+</head>
+<body>
+<h2> list items in cart</h2>
+{% if request.session %}
+    <table border = 2>
+    <thead>
+    <th>item</th>
+    <th>quantity</th>
+    </thead>
+    {% for key,value in request.session.items %}
+        {% if key != '_auth_user_id' and key != '_auth_user_backend'  and key != '_auth_user_hash' %}
+        <tr>
+        <td>{{ key }}</td>
+        <td>{{ value }}</td>
+        </tr>
+        {% endif %}
+    {% endfor %}
+    </table>
+    {% else %}
+    <h2> no data found</h2>
+{% endif %}
+</body>
+</html>
